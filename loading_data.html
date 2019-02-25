@@ -16,9 +16,15 @@
                     <th>Name</th>
                     <th>Close Approach Date</th>
                 </thead>
-                <tbody></tbody>
+                <tbody v-cloak>
+                    <tr v-for="a in asteroids">
+                        <td>{{a.name}}</td>
+                        <td>{{getCloseApproachDate(a)}}</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
@@ -39,8 +45,14 @@
                 var url = "https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=" + apiKey;
                 axios.get(url)
                     .then(function(res) {
-                        vm.asteroids = res.data.near_earth_objects.slice(1, 10);
-                }); 
+                        vm.asteroids = res.data.near_earth_objects.slice(0, 10);
+                    }); 
+            },
+            getCloseApproachDate: function(a) {
+                if (a.close_approach_data.length > 0) {
+                    return a.close_approach_data[0].close_approach_date;
+                }
+                return "n/a";
             }
         }       
     });   
