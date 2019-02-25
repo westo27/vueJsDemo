@@ -39,7 +39,7 @@
                 var url = "https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=" + apiKey;
                 axios.get(url)
                     .then(function(res) {
-                        vm.asteroids = res.data.near_earth_objects.slice(0, 10);
+                        vm.asteroids = res.data.near_earth_objects.slice(1, 10);
                 }); 
             }
         }       
