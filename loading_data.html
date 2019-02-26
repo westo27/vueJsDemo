@@ -42,7 +42,8 @@
         methods: {
             fetchAsteroids: function() {
                 var apiKey = "kHU6OqVQkVBBuhvcL7so4gfbU45W1aeWa94bIhGf";
-                var url = "https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=" + apiKey;
+                //var url = "https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=" + apiKey;
+                var url = "http://737798.youcanlearnit.net/neos.json"
                 axios.get(url)
                     .then(function(res) {
                         vm.asteroids = res.data.near_earth_objects.slice(0, 10);
